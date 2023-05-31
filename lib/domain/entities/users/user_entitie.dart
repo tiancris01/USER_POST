@@ -7,7 +7,7 @@ class UserEntitie with _$UserEntitie {
   const UserEntitie._();
   const factory UserEntitie({
     required int id,
-    required String name,
+    required String fullName,
     required String email,
     required String phone,
   }) = _UserEntitie;

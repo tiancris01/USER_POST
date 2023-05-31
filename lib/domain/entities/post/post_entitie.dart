@@ -9,6 +9,6 @@ class PostEntitie with _$PostEntitie {
     required int userId,
     required int id,
     required String title,
-    required String body,
+    required String postDetail,
   }) = _PostEntitie;
 }
