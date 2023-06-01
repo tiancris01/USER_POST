@@ -23,6 +23,11 @@ class IsarUsersDataSource implements IsarUsersLocalUsecase {
     return Future.value(Isar.getInstance());
   }
 
+  Future<bool> existUsers() async {
+    final result = await getUsers();
+    return result.isNotEmpty;
+  }
+
   @override
   Future<List<UserEntitie>> getUsers() async {
     final isar = await db;
@@ -32,9 +37,15 @@ class IsarUsersDataSource implements IsarUsersLocalUsecase {
   @override
   Future<void> saveUsers(List<UserEntitie> users) async {
     final isar = await db;
-    isar.writeTxn(() async {
-      await isar.userEntities.putAll(users);
-    });
+    final existUser = await existUsers();
+    if (existUser) {
+      await isar.writeTxn(() async {
+        await isar.userEntities.putAll(users);
+      });
+      return;
+    } else {
+      return;
+    }
   }
 
   @override
