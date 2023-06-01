@@ -4,9 +4,9 @@ import 'package:user_post/app/helpers/server_failure.dart';
 import 'package:user_post/domain/entities/users/user_entitie.dart';
 import 'package:user_post/presentation/providers/users/users_repository_provider.dart';
 
-final getUsersProvider =
+final jsonPHUserProvider =
     StateNotifierProvider<UsersNotifier, List<UserEntitie>>((ref) {
-  final getUsers = ref.watch(userRepositoryProvider).getUsers;
+  final getUsers = ref.watch(jsonPHUserRepoProvider).getUsers;
 
   return UsersNotifier(getUsers: getUsers);
 });
@@ -24,11 +24,10 @@ class UsersNotifier extends StateNotifier<List<UserEntitie>> {
     final response = await getUsers();
     response.fold(
       (l) {
-        print(l.error);
+        //TODO: SnackBar with error
       },
       (r) {
         state = [...state, ...r];
-        print(r);
       },
     );
   }

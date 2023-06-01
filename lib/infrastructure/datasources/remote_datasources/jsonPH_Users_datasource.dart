@@ -4,10 +4,10 @@ import 'package:user_post/app/config/environments.dart';
 import 'package:user_post/app/helpers/server_failure.dart';
 import 'package:user_post/domain/entities/post/post_entitie.dart';
 import 'package:user_post/domain/entities/users/user_entitie.dart';
-import 'package:user_post/domain/usecases/remote_datasource_usecases/jsonplaceholder_datasource_usecase.dart';
+import 'package:user_post/domain/usecases/remote_datasource_usecases/jsonPH_users_usecase.dart';
 import 'package:user_post/infrastructure/dtos/users/user_dto.dart';
 
-class JasonPlaceholderDatasource implements JsonplaceholderDatasourceUsecases {
+class JasonPHUsersDatasource implements JsonPHUsersUsecases {
   final baseUrl = '${Environment().config.testApiUrl}';
 
   final dio = Dio();
