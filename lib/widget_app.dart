@@ -20,11 +20,22 @@ class _WidgetAppState extends ConsumerState<WidgetApp> {
           title: const Text('Prueba de ingreso'),
         ),
         body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              ref.read(getUsersProvider.notifier).getAllUsers();
-            },
-            child: Text('Hola mundo'),
+          child: Column(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  ref.read(jsonPHUserProvider.notifier).getAllUsers();
+                },
+                child: Text('Fetch Users'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  final users = ref.watch(jsonPHUserProvider);
+                  ref.read(isarUserRepoProvider).saveUsers(users);
+                },
+                child: Text('Save Users'),
+              ),
+            ],
           ),
         ),
       ),
