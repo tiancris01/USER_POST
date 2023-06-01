@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:user_post/domain/entities/users/user_entitie.dart';
 import 'package:user_post/presentation/providers/providers.dart';
 
@@ -45,7 +46,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   trailing: IconButton(
                     icon: const Icon(Icons.arrow_forward_ios_rounded),
-                    onPressed: () async {},
+                    onPressed: () {
+                      context.push('/userPost/${user.id}');
+                    },
                   ),
                 );
               },

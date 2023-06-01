@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_post/app/config/theme.dart';
+import 'package:user_post/app/core/routes/go_router.dart';
 import 'package:user_post/presentation/providers/providers.dart';
 import 'package:user_post/presentation/screens/home_scree.dart';
 
@@ -31,10 +32,10 @@ class _WidgetAppState extends ConsumerState<WidgetApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'Prueba de ingreso',
       theme: appTheme,
-      home: const HomeScreen(),
     );
   }
 }
