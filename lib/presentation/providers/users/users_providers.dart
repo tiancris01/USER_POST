@@ -23,8 +23,13 @@ class UsersNotifier extends StateNotifier<List<UserEntitie>> {
   Future<void> getAllUsers() async {
     final response = await getUsers();
     response.fold(
-      (l) => print(l.error),
-      (r) => state = [...state, ...r],
+      (l) {
+        print(l.error);
+      },
+      (r) {
+        state = [...state, ...r];
+        print(r);
+      },
     );
   }
 }

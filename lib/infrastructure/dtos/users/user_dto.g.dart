@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'users/user_dto.dart';
+part of 'user_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -8,7 +8,7 @@ part of 'users/user_dto.dart';
 
 _$_UserDTO _$$_UserDTOFromJson(Map<String, dynamic> json) => _$_UserDTO(
       id: json['id'] as int,
-      fullName: json['fullName'] as String,
+      fullName: json['name'] as String,
       email: json['email'] as String,
       phone: json['phone'] as String,
     );
@@ -16,7 +16,7 @@ _$_UserDTO _$$_UserDTOFromJson(Map<String, dynamic> json) => _$_UserDTO(
 Map<String, dynamic> _$$_UserDTOToJson(_$_UserDTO instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'fullName': instance.fullName,
+      'name': instance.fullName,
       'email': instance.email,
       'phone': instance.phone,
     };

@@ -1,15 +1,14 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:user_post/domain/entities/users/user_entitie.dart';
 
-part '../user_dto.freezed.dart';
-part '../user_dto.g.dart';
+part 'user_dto.freezed.dart';
+part 'user_dto.g.dart';
 
 @freezed
 class UserDTO with _$UserDTO {
   const UserDTO._();
   const factory UserDTO({
     required int id,
-    // ignore: invalid_annotation_target
     @JsonKey(name: 'name') required String fullName,
     required String email,
     required String phone,

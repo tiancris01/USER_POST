@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'users/user_dto.dart';
+part of 'user_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -20,9 +20,8 @@ UserDTO _$UserDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserDTO {
-  int get id =>
-      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
-  @JsonKey(name: 'fullName')
+  int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
   String get fullName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
@@ -39,7 +38,7 @@ abstract class $UserDTOCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'fullName') String fullName,
+      @JsonKey(name: 'name') String fullName,
       String email,
       String phone});
 }
@@ -92,7 +91,7 @@ abstract class _$$_UserDTOCopyWith<$Res> implements $UserDTOCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'fullName') String fullName,
+      @JsonKey(name: 'name') String fullName,
       String email,
       String phone});
 }
@@ -138,7 +137,7 @@ class __$$_UserDTOCopyWithImpl<$Res>
 class _$_UserDTO extends _UserDTO {
   const _$_UserDTO(
       {required this.id,
-      @JsonKey(name: 'fullName') required this.fullName,
+      @JsonKey(name: 'name') required this.fullName,
       required this.email,
       required this.phone})
       : super._();
@@ -148,9 +147,8 @@ class _$_UserDTO extends _UserDTO {
 
   @override
   final int id;
-// ignore: invalid_annotation_target
   @override
-  @JsonKey(name: 'fullName')
+  @JsonKey(name: 'name')
   final String fullName;
   @override
   final String email;
@@ -195,7 +193,7 @@ class _$_UserDTO extends _UserDTO {
 abstract class _UserDTO extends UserDTO {
   const factory _UserDTO(
       {required final int id,
-      @JsonKey(name: 'fullName') required final String fullName,
+      @JsonKey(name: 'name') required final String fullName,
       required final String email,
       required final String phone}) = _$_UserDTO;
   const _UserDTO._() : super._();
@@ -204,8 +202,8 @@ abstract class _UserDTO extends UserDTO {
 
   @override
   int get id;
-  @override // ignore: invalid_annotation_target
-  @JsonKey(name: 'fullName')
+  @override
+  @JsonKey(name: 'name')
   String get fullName;
   @override
   String get email;
