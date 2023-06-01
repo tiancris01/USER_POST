@@ -12,8 +12,11 @@ class WidgetApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Prueba de ingreso'),
         ),
-        body: const Center(
-          child: Text('Hello World!'),
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {},
+            child: Text('Hola mundo'),
+          ),
         ),
       ),
     );

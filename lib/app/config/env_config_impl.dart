@@ -7,5 +7,5 @@ class EnvConfigImpl implements EnvModelConfig {
   bool? get showDebugBanner => dotenv.env['SHOW_DEBUG_BANNER'] == 'true';
 
   @override
-  String? get testApiUrl => dotenv.env['TEST_API_URL'];
+  String? get testApiUrl => dotenv.env['BASE_URL'];
 }
