@@ -6,5 +6,9 @@ import 'app/config/environments.dart';
 
 Future<void> main() async {
   await Environment().initConfig();
-  runApp(const ProviderScope(child: WidgetApp()));
+  runApp(
+    const ProviderScope(
+      child: WidgetApp(),
+    ),
+  );
 }

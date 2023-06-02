@@ -20,11 +20,11 @@ class _WidgetAppState extends ConsumerState<WidgetApp> {
   }
 
   void initialize() async {
-    final localUsers = await ref.watch(isarUserRepoProvider).getUsers();
+    final localUsers = await ref.read(isarRepoProvider).getUsers();
     if (localUsers.isEmpty) {
       await ref.read(jsonPHUserProvider.notifier).getAllUsers();
       final users = ref.read(jsonPHUserProvider);
-      await ref.watch(isarUserRepoProvider).saveUsers(users);
+      await ref.read(isarRepoProvider).saveUsers(users);
     } else {
       return;
     }

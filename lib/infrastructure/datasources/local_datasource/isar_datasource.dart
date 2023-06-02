@@ -43,7 +43,7 @@ class IsarDataSource implements IsarLocalUsecase {
   Future<void> saveUsers(List<UserEntitie> users) async {
     final isar = await db;
     final existUser = await existUsers();
-    if (existUser) {
+    if (!existUser) {
       await isar.writeTxn(() async {
         await isar.userEntities.putAll(users);
       });
@@ -63,11 +63,9 @@ class IsarDataSource implements IsarLocalUsecase {
   @override
   Future<void> savePosts(List<PostEntitie> posts) async {
     final isar = await db;
-    final result = await isar.postEntities
-        .filter()
-        .userIdEqualTo(posts.first.userId)
-        .findAll();
-    if (result.isNotEmpty) {
+    final id = posts.last.userId;
+    final result = await isar.postEntities.filter().userIdEqualTo(id).findAll();
+    if (result.isEmpty) {
       return await isar.writeTxn(() async {
         await isar.postEntities.putAll(posts);
       });

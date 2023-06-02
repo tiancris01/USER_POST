@@ -13,8 +13,14 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
+  void initState() {
+    ref.read(isarRepoProvider);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final localUsers = ref.watch(isarUserRepoProvider).getUsers();
+    final localUsers = ref.watch(isarRepoProvider).getUsers();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Prueba de ingreso'),
@@ -47,7 +53,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   trailing: IconButton(
                     icon: const Icon(Icons.arrow_forward_ios_rounded),
                     onPressed: () {
-                      context.push('/userPost/${user.id}');
+                      context.push('/userPost', extra: user);
                     },
                   ),
                 );

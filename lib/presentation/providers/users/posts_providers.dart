@@ -27,7 +27,7 @@ class UsersNotifier extends StateNotifier<List<PostEntitie>> {
         //TODO: SnackBar with error
       },
       (r) {
-        state = [...state, ...r];
+        state = [...r];
       },
     );
   }
