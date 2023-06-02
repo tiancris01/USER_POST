@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:user_post/domain/entities/users/user_entitie.dart';
-import 'package:user_post/presentation/providers/providers.dart';
 import 'package:user_post/presentation/providers/users/isar_users_repository.dart';
+import 'package:user_post/presentation/providers/users/jsonPH_users_providers.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -27,15 +27,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   init() async {
     await ref.read(jsonPHUserProvider.notifier).getAllUsers();
     await ref.read(isarUserProvider.notifier).getAllUsers();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     final localUsers = ref.watch(isarUserProvider);
     if (localUsers.isEmpty) {
       final remoteUsers = ref.watch(jsonPHUserProvider);
       if (remoteUsers.isEmpty) {
-        return const Center(child: CircularProgressIndicator());
+        return;
       }
       _users.addAll(remoteUsers);
       _usersToDisplay = _users;
@@ -43,21 +39,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       _users.addAll(localUsers);
       _usersToDisplay = _users;
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Prueba de ingreso'),
       ),
-      body: _usersToDisplay.isEmpty
-          ? const Center(child: CircularProgressIndicator())
-          : Column(
-              children: [
-                _searchBar(),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: _usersToDisplay.length,
-                    itemBuilder: (context, index) {
-                      final user = _usersToDisplay[index];
-                      return ListTile(
+      body: Column(
+        children: [
+          _searchBar(),
+          Expanded(
+            child: ListView.builder(
+              itemCount: _usersToDisplay.length,
+              itemBuilder: (context, index) {
+                final user = _usersToDisplay[index];
+                return _usersToDisplay.isEmpty
+                    ? const Center(child: CircularProgressIndicator())
+                    : ListTile(
                         isThreeLine: true,
                         leading: CircleAvatar(
                           child: Text(
@@ -80,11 +80,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           },
                         ),
                       );
-                    },
-                  ),
-                ),
-              ],
+              },
             ),
+          ),
+        ],
+      ),
     );
   }
 

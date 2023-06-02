@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_post/app/config/theme.dart';
 import 'package:user_post/app/core/routes/app_routes.dart';
-import 'package:user_post/presentation/providers/providers.dart';
-import 'package:user_post/presentation/screens/home_scree.dart';
+import 'package:user_post/presentation/providers/users/jsonPH_users_providers.dart';
+import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
 
 class WidgetApp extends ConsumerStatefulWidget {
   const WidgetApp({super.key});

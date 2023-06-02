@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_post/domain/entities/post/post_entitie.dart';
 
 import 'package:user_post/domain/entities/users/user_entitie.dart';
-import 'package:user_post/presentation/providers/providers.dart';
 import 'package:user_post/presentation/providers/users/jsonPH_posts_providers.dart';
+import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
 
 class PostScreen extends ConsumerStatefulWidget {
   static const routeName = 'userPost';
@@ -25,10 +25,10 @@ class _PostScreenState extends ConsumerState<PostScreen> {
   @override
   void initState() {
     super.initState();
-    initilaize();
+    init();
   }
 
-  void initilaize() async {
+  void init() async {
     final localUsersPost =
         await ref.read(isarRepoProvider).getPostByUserId(widget.user.id);
     if (localUsersPost.isEmpty) {
