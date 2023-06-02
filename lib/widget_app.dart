@@ -15,18 +15,19 @@ class WidgetApp extends ConsumerStatefulWidget {
 class _WidgetAppState extends ConsumerState<WidgetApp> {
   @override
   void initState() {
-    super.initState();
     initialize();
+    super.initState();
   }
 
   void initialize() async {
-    final localUsers = await ref.read(isarRepoProvider).getUsers();
-    if (localUsers.isEmpty) {
+    final localUsers = await ref.read(isarRepoProvider).existUsers();
+    if (!localUsers) {
       await ref.read(jsonPHUserProvider.notifier).getAllUsers();
-      final users = ref.read(jsonPHUserProvider);
-      await ref.read(isarRepoProvider).saveUsers(users);
+      await ref.read(isarRepoProvider).saveUsers(
+            ref.read(jsonPHUserProvider),
+          );
     } else {
-      return;
+      await ref.read(jsonPHUserProvider.notifier).getAllUsers();
     }
   }
 

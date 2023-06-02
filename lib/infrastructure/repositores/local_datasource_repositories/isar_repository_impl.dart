@@ -27,4 +27,14 @@ class IsarRepositoryImpl implements IsarLocalRepository {
   Future<void> savePosts(List<PostEntitie> posts) {
     return isarLocalUsecase.savePosts(posts);
   }
+
+  @override
+  Future<bool> existPostsByUser(int id) {
+    return isarLocalUsecase.existPostsByUser(id);
+  }
+
+  @override
+  Future<bool> existUsers() {
+    return isarLocalUsecase.existUsers();
+  }
 }
