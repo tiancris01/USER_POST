@@ -14,7 +14,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final localUsers = ref.read(isarUserRepoProvider).getUsers();
+    final localUsers = ref.watch(isarUserRepoProvider).getUsers();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Prueba de ingreso'),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_post/app/config/theme.dart';
-import 'package:user_post/app/core/routes/go_router.dart';
+import 'package:user_post/app/core/routes/app_routes.dart';
 import 'package:user_post/presentation/providers/providers.dart';
 import 'package:user_post/presentation/screens/home_scree.dart';
 
@@ -20,7 +20,7 @@ class _WidgetAppState extends ConsumerState<WidgetApp> {
   }
 
   void initialize() async {
-    final localUsers = await ref.read(isarUserRepoProvider).getUsers();
+    final localUsers = await ref.watch(isarUserRepoProvider).getUsers();
     if (localUsers.isEmpty) {
       await ref.read(jsonPHUserProvider.notifier).getAllUsers();
       final users = ref.read(jsonPHUserProvider);

@@ -2,7 +2,7 @@ import 'package:either_dart/either.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_post/app/helpers/server_failure.dart';
 import 'package:user_post/domain/entities/users/user_entitie.dart';
-import 'package:user_post/presentation/providers/users/users_repository_provider.dart';
+import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
 
 final jsonPHUserProvider =
     StateNotifierProvider<UsersNotifier, List<UserEntitie>>((ref) {

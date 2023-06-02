@@ -4,13 +4,13 @@ import 'package:either_dart/either.dart';
 import 'package:user_post/app/helpers/server_failure.dart';
 import 'package:user_post/domain/entities/post/post_entitie.dart';
 import 'package:user_post/domain/entities/users/user_entitie.dart';
-import 'package:user_post/domain/repositories/remote_datasource_repositories/jsonPH_users_repository.dart';
-import 'package:user_post/domain/usecases/remote_datasource_usecases/jsonPH_users_usecase.dart';
+import 'package:user_post/domain/repositories/remote_datasource_repositories/jsonPH_repository.dart';
+import 'package:user_post/domain/usecases/remote_datasource_usecases/jsonPH_usecase.dart';
 
-class JsonPHUsersRepositoryImpl extends JsonPHUsersRepository {
-  final JsonPHUsersUsecases jphDataSource;
+class JsonPHRepositoryImpl extends JsonPHRepository {
+  final JsonPHUsecases jphDataSource;
 
-  JsonPHUsersRepositoryImpl({
+  JsonPHRepositoryImpl({
     required this.jphDataSource,
   });
 
@@ -20,8 +20,8 @@ class JsonPHUsersRepositoryImpl extends JsonPHUsersRepository {
   }
 
   @override
-  Future<Either<ServerFailure, PostEntitie>> getPostByUserId(int id) {
-    // TODO: implement getPostByUserId
-    throw UnimplementedError();
+  Future<Either<ServerFailure, List<PostEntitie>>> getPostByUserId(
+      int id) async {
+    return await jphDataSource.getPostByUserId(id);
   }
 }

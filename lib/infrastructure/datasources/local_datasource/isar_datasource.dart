@@ -2,12 +2,12 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:user_post/domain/entities/post/post_entitie.dart';
 import 'package:user_post/domain/entities/users/user_entitie.dart';
-import 'package:user_post/domain/usecases/Local_datasource_usecases/isar_users_local_usecase.dart';
+import 'package:user_post/domain/usecases/Local_datasource_usecases/isar_local_usecase.dart';
 
-class IsarUsersDataSource implements IsarUsersLocalUsecase {
+class IsarDataSource implements IsarLocalUsecase {
   late Future<Isar> db;
 
-  IsarUsersDataSource() {
+  IsarDataSource() {
     db = openDb();
   }
 
@@ -15,7 +15,7 @@ class IsarUsersDataSource implements IsarUsersLocalUsecase {
     final dir = await getApplicationDocumentsDirectory();
     if (Isar.instanceNames.isEmpty) {
       return await Isar.open(
-        [UserEntitieSchema],
+        [UserEntitieSchema, PostEntitieSchema],
         inspector: true,
         directory: dir.path,
       );
@@ -25,6 +25,11 @@ class IsarUsersDataSource implements IsarUsersLocalUsecase {
 
   Future<bool> existUsers() async {
     final result = await getUsers();
+    return result.isNotEmpty;
+  }
+
+  Future<bool> existPosts(int id) async {
+    final result = await getPostByUserId(id);
     return result.isNotEmpty;
   }
 
@@ -49,8 +54,25 @@ class IsarUsersDataSource implements IsarUsersLocalUsecase {
   }
 
   @override
-  Future<PostEntitie> getPostByUserId(int id) {
-    // TODO: implement getPostByUserId
-    throw UnimplementedError();
+  Future<List<PostEntitie>> getPostByUserId(int id) async {
+    final isar = await db;
+    final filterPost = isar.postEntities.filter().userIdEqualTo(id).findAll();
+    return filterPost;
+  }
+
+  @override
+  Future<void> savePosts(List<PostEntitie> posts) async {
+    final isar = await db;
+    final result = await isar.postEntities
+        .filter()
+        .userIdEqualTo(posts.first.userId)
+        .findAll();
+    if (result.isNotEmpty) {
+      return await isar.writeTxn(() async {
+        await isar.postEntities.putAll(posts);
+      });
+    } else {
+      return;
+    }
   }
 }
