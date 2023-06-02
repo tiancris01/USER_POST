@@ -23,11 +23,6 @@ class IsarDataSource implements IsarLocalUsecase {
     return Future.value(Isar.getInstance());
   }
 
-  Future<bool> existUsers() async {
-    final result = await getUsers();
-    return result.isNotEmpty;
-  }
-
   Future<bool> existPosts(int id) async {
     final result = await getPostByUserId(id);
     return result.isNotEmpty;
@@ -72,5 +67,17 @@ class IsarDataSource implements IsarLocalUsecase {
     } else {
       return;
     }
+  }
+
+  @override
+  Future<bool> existPostsByUser(int id) {
+    final result = getPostByUserId(id);
+    return result.then((value) => value.isNotEmpty);
+  }
+
+  @override
+  Future<bool> existUsers() async {
+    final result = getUsers();
+    return result.then((value) => value.isNotEmpty);
   }
 }

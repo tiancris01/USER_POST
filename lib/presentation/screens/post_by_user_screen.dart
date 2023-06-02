@@ -5,7 +5,7 @@ import 'package:user_post/domain/entities/post/post_entitie.dart';
 
 import 'package:user_post/domain/entities/users/user_entitie.dart';
 import 'package:user_post/presentation/providers/providers.dart';
-import 'package:user_post/presentation/providers/users/posts_providers.dart';
+import 'package:user_post/presentation/providers/users/jsonPH_posts_providers.dart';
 
 class PostScreen extends ConsumerStatefulWidget {
   static const routeName = 'userPost';
