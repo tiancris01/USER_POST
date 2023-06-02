@@ -37,7 +37,7 @@ class JasonPHDatasource implements JsonPHUsecases {
   @override
   Future<Either<ServerFailure, List<PostEntitie>>> getPostByUserId(
       int id) async {
-    final response = await dio.get('$baseUrl/posts?userId=$id');
+    final response = await dio.get('$baseUrl/posts?userId=$id');print(response.data);
     try {
       return Right(
         response.data
