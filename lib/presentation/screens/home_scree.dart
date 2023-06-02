@@ -5,7 +5,9 @@ import 'package:go_router/go_router.dart';
 
 import 'package:user_post/domain/entities/users/user_entitie.dart';
 import 'package:user_post/presentation/providers/users/isar_users_repository.dart';
+import 'package:user_post/presentation/providers/users/jsonPH_posts_providers.dart';
 import 'package:user_post/presentation/providers/users/jsonPH_users_providers.dart';
+import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -27,6 +29,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   init() async {
     await ref.read(jsonPHUserProvider.notifier).getAllUsers();
     await ref.read(isarUserProvider.notifier).getAllUsers();
+
     final localUsers = ref.watch(isarUserProvider);
     if (localUsers.isEmpty) {
       final remoteUsers = ref.watch(jsonPHUserProvider);
@@ -113,7 +116,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 }
 
-class CustmoScafold extends StatelessWidget {
+class CustmoScafold extends ConsumerWidget {
   const CustmoScafold({
     Key? key,
     required this.label,
@@ -124,7 +127,7 @@ class CustmoScafold extends StatelessWidget {
   final List<UserEntitie> users;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(label),
@@ -152,6 +155,10 @@ class CustmoScafold extends StatelessWidget {
             trailing: IconButton(
               icon: const Icon(Icons.arrow_forward_ios_rounded),
               onPressed: () {
+                ref.read(jsonPHPostProvider.notifier).getPostByUsers(user.id);
+                ref.read(isarRepoProvider).savePosts(
+                      ref.read(jsonPHPostProvider),
+                    );
                 context.push('/userPost', extra: user);
               },
             ),

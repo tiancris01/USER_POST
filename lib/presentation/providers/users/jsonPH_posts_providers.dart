@@ -20,7 +20,7 @@ class UsersNotifier extends StateNotifier<List<PostEntitie>> {
     required this.getPostByUsers,
   }) : super([]);
 
-  Future<void> getAllPost(int id) async {
+  Future<void> getPostByUserId(int id) async {
     final response = await getPostByUsers(id);
     response.fold(
       (l) {

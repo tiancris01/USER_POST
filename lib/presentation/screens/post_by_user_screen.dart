@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_post/domain/entities/post/post_entitie.dart';
 
 import 'package:user_post/domain/entities/users/user_entitie.dart';
+import 'package:user_post/presentation/providers/users/isar_posts_repository.dart';
+import 'package:user_post/presentation/providers/users/isar_users_repository.dart';
 import 'package:user_post/presentation/providers/users/jsonPH_posts_providers.dart';
 import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
 
@@ -22,6 +24,7 @@ class PostScreen extends ConsumerStatefulWidget {
 }
 
 class _PostScreenState extends ConsumerState<PostScreen> {
+  final List<PostEntitie> _post = <PostEntitie>[];
   @override
   void initState() {
     super.initState();
@@ -29,14 +32,18 @@ class _PostScreenState extends ConsumerState<PostScreen> {
   }
 
   void init() async {
-    final localUsersPost =
-        await ref.read(isarRepoProvider).getPostByUserId(widget.user.id);
-    if (localUsersPost.isEmpty) {
-      await ref.read(jsonPHPostProvider.notifier).getAllPost(widget.user.id);
-      final posts = ref.read(jsonPHPostProvider);
-      await ref.read(isarRepoProvider).savePosts(posts);
+    await ref.read(jsonPHPostProvider.notifier).getPostByUserId(widget.user.id);
+    await ref.read(isarPostProvider.notifier).getPostByUserid(widget.user.id);
+
+    final localPost = ref.watch(isarPostProvider);
+    if (localPost.isEmpty) {
+      final remotePost = ref.watch(jsonPHPostProvider);
+      if (remotePost.isEmpty) {
+        return;
+      }
+      _post.addAll(remotePost);
     } else {
-      return;
+      _post.addAll(localPost);
     }
   }
 
