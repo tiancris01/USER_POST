@@ -1,14 +1,21 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:user_post/domain/entities/post/post_entitie.dart';
+
+import 'package:user_post/domain/entities/users/user_entitie.dart';
 import 'package:user_post/presentation/providers/providers.dart';
 import 'package:user_post/presentation/providers/users/posts_providers.dart';
 
 class PostScreen extends ConsumerStatefulWidget {
   static const routeName = 'userPost';
 
-  final String userId;
+  final UserEntitie user;
 
-  const PostScreen({required this.userId, super.key});
+  const PostScreen({
+    super.key,
+    required this.user,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _PostScreenState();
@@ -22,15 +29,12 @@ class _PostScreenState extends ConsumerState<PostScreen> {
   }
 
   void initilaize() async {
-    final localUsersPost = await ref
-        .watch(isarUserRepoProvider)
-        .getPostByUserId(int.parse(widget.userId));
+    final localUsersPost =
+        await ref.read(isarRepoProvider).getPostByUserId(widget.user.id);
     if (localUsersPost.isEmpty) {
-      await ref
-          .read(jsonPHPostProvider.notifier)
-          .getPostByUsers(int.parse(widget.userId));
+      await ref.read(jsonPHPostProvider.notifier).getAllPost(widget.user.id);
       final posts = ref.read(jsonPHPostProvider);
-      await ref.watch(isarUserRepoProvider).savePosts(posts);
+      await ref.read(isarRepoProvider).savePosts(posts);
     } else {
       return;
     }
@@ -38,13 +42,47 @@ class _PostScreenState extends ConsumerState<PostScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final post = ref.watch(isarRepoProvider).getPostByUserId(widget.user.id);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Id:  ${widget.userId}'),
+        centerTitle: true,
+        title: Text('${widget.user.fullName}'),
       ),
-      body: const Center(
-        child: Text('Post Screen'),
-      ),
+      body: Center(
+          child: Column(
+        children: [
+          const SizedBox(height: 20),
+          Text(widget.user.phone),
+          Text(widget.user.email),
+          const SizedBox(height: 20),
+          FutureBuilder(
+            future: post,
+            builder: (_, snapshot) {
+              if (snapshot.hasData) {
+                final List<PostEntitie> posts =
+                    snapshot.data as List<PostEntitie>;
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: posts.length,
+                    itemBuilder: (context, index) {
+                      final post = posts[index];
+                      return ListTile(
+                        title: Text(post.title),
+                        subtitle: Text(post.postDetail),
+                      );
+                    },
+                  ),
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          )
+        ],
+      )),
     );
   }
 }
