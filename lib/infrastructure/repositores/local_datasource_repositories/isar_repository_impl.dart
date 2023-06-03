@@ -37,4 +37,9 @@ class IsarRepositoryImpl implements IsarLocalRepository {
   Future<bool> existUsers() {
     return isarLocalUsecase.existUsers();
   }
+
+  @override
+  Future<List<UserEntitie>> searchUsers(String query) {
+    return isarLocalUsecase.searchUsers(query);
+  }
 }

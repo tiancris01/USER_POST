@@ -31,7 +31,8 @@ class IsarDataSource implements IsarLocalUsecase {
   @override
   Future<List<UserEntitie>> getUsers() async {
     final isar = await db;
-    return isar.userEntities.where().findAll();
+    final result = await isar.userEntities.where().findAll();
+    return result;
   }
 
   @override
@@ -70,14 +71,25 @@ class IsarDataSource implements IsarLocalUsecase {
   }
 
   @override
-  Future<bool> existPostsByUser(int id) {
-    final result = getPostByUserId(id);
-    return result.then((value) => value.isNotEmpty);
+  Future<bool> existPostsByUser(int id) async {
+    final result = await getPostByUserId(id);
+    return result.isNotEmpty;
   }
 
   @override
   Future<bool> existUsers() async {
-    final result = getUsers();
-    return result.then((value) => value.isNotEmpty);
+    final result = await getUsers();
+    return result.isNotEmpty;
+  }
+
+  @override
+  Future<List<UserEntitie>> searchUsers(String query) async {
+    final isar = await db;
+    final result = await isar.userEntities
+        .where()
+        .filter()
+        .fullNameContains(query, caseSensitive: false)
+        .findAll();
+    return result;
   }
 }
