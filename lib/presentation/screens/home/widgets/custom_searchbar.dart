@@ -18,7 +18,7 @@ class CustomSearchBar extends StatelessWidget {
         autofocus: false,
         onChanged: (searchText) {
           searchText = searchText;
-          ref.read(isarUserProvider.notifier).search(searchText);
+          ref.read(isarUserNotifierProvider.notifier).search(searchText);
         },
         decoration: const InputDecoration(
           border: OutlineInputBorder(),

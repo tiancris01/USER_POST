@@ -24,13 +24,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   init() async {
     // fetching data from jsonplaceholder
-    await ref.read(jsonPHUserProvider.notifier).getAllUsers();
+    await ref.read(jsonPHNotifierUserProvider.notifier).getAllUsers();
     // getting data from state
-    final response = ref.read(jsonPHUserProvider);
+    final response = ref.read(jsonPHNotifierUserProvider);
     // saving data to isar database
     await ref.read(isarRepoProvider).saveUsers(response);
     // getting data from isar database
-    ref.read(isarUserProvider.notifier).getAllUsers();
+    ref.read(isarUserNotifierProvider.notifier).getAllUsers();
   }
 
   @override

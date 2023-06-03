@@ -4,7 +4,7 @@ import 'package:user_post/app/helpers/server_failure.dart';
 import 'package:user_post/domain/entities/users/user_entitie.dart';
 import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
 
-final jsonPHUserProvider =
+final jsonPHNotifierUserProvider =
     StateNotifierProvider<UsersNotifier, List<UserEntitie>>((ref) {
   final getUsers = ref.watch(jsonPHUserRepoProvider).getUsers;
 

@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:user_post/domain/entities/users/user_entitie.dart';
 import 'package:user_post/presentation/screens/home/home_scree.dart';
-import 'package:user_post/presentation/screens/post_by_user_screen.dart';
+import 'package:user_post/presentation/screens/user_post/post_by_user_screen.dart';
 
 // GoRouter configuration
 final router = GoRouter(

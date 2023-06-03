@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:user_post/presentation/providers/users/isar_posts_repository.dart';
 import 'package:user_post/presentation/providers/users/isar_users_repository.dart';
 import 'package:user_post/presentation/providers/users/jsonPH_posts_providers.dart';
 import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
@@ -11,8 +12,11 @@ class CustmoScafold extends ConsumerWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final users = ref.watch(isarUserProvider);
+  Widget build(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
+    final users = ref.watch(isarUserNotifierProvider);
     return ListView.builder(
       itemCount: users.length,
       itemBuilder: (context, index) {
@@ -38,12 +42,6 @@ class CustmoScafold extends ConsumerWidget {
                 trailing: IconButton(
                   icon: const Icon(Icons.arrow_forward_ios_rounded),
                   onPressed: () {
-                    ref
-                        .read(jsonPHPostProvider.notifier)
-                        .getPostByUsers(user.id);
-                    ref.read(isarRepoProvider).savePosts(
-                          ref.read(jsonPHPostProvider),
-                        );
                     context.push('/userPost', extra: user);
                   },
                 ),

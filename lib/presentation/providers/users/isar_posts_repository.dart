@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_post/domain/entities/post/post_entitie.dart';
 import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
 
-final isarPostProvider =
+final isarNotifierPostProvider =
     StateNotifierProvider<UsersNotifier, List<PostEntitie>>((ref) {
   final getPostByUserId = ref.watch(isarRepoProvider).getPostByUserId;
 
@@ -20,6 +20,6 @@ class UsersNotifier extends StateNotifier<List<PostEntitie>> {
 
   Future<void> getPostByUserid(int id) async {
     final response = await getPostByUserId(id);
-    state = [...state, ...response];
+    state = [...response];
   }
 }
