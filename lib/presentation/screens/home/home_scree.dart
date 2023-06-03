@@ -42,7 +42,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       body: Column(
         children: [
           CustomSearchBar(ref: ref),
-          const Expanded(child: CustmoScafold()),
+          const Expanded(child: CustmoListView()),
         ],
       ),
     );

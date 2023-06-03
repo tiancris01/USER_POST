@@ -6,6 +6,7 @@ import 'package:user_post/domain/entities/users/user_entitie.dart';
 import 'package:user_post/presentation/providers/users/isar_posts_repository.dart';
 import 'package:user_post/presentation/providers/users/jsonPH_posts_providers.dart';
 import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
+import 'package:user_post/presentation/screens/user_post/widgets/post_listview.dart';
 
 class PostScreen extends ConsumerStatefulWidget {
   static const routeName = 'userPost';
@@ -59,22 +60,12 @@ class _PostScreenState extends ConsumerState<PostScreen> {
             Text(widget.user.email),
             const SizedBox(height: 20),
             Expanded(
-              child: ListView.separated(
-                itemCount: postByUser.length,
-                itemBuilder: (context, index) {
-                  final post = postByUser[index];
-                  return ListTile(
-                    title: Text(post.title),
-                    subtitle: Text(post.postDetail),
-                  );
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return const Divider(
-                    thickness: 2,
-                  );
-                },
-              ),
-            ),
+                child: postByUser.when(
+              initial: () => const Center(child: Text('Empty list')),
+              loading: () => const Center(child: CircularProgressIndicator()),
+              data: (posts) => PostListView(posts: posts),
+              error: () => const Text('Error Occurred'),
+            )),
           ],
         ),
       ),

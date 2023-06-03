@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'state_provider.dart';
+part of 'user_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$UserState {
+mixin _$UsersState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserEntitie user) data,
+    required TResult Function(List<UserEntitie> user) data,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$UserState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserEntitie user)? data,
+    TResult? Function(List<UserEntitie> user)? data,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$UserState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserEntitie user)? data,
+    TResult Function(List<UserEntitie> user)? data,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -69,15 +69,15 @@ mixin _$UserState {
 }
 
 /// @nodoc
-abstract class $UserStateCopyWith<$Res> {
-  factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
-      _$UserStateCopyWithImpl<$Res, UserState>;
+abstract class $UsersStateCopyWith<$Res> {
+  factory $UsersStateCopyWith(UserState value, $Res Function(UserState) then) =
+      _$UsersStateCopyWithImpl<$Res, UserState>;
 }
 
 /// @nodoc
-class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
-    implements $UserStateCopyWith<$Res> {
-  _$UserStateCopyWithImpl(this._value, this._then);
+class _$UsersStateCopyWithImpl<$Res, $Val extends UserState>
+    implements $UsersStateCopyWith<$Res> {
+  _$UsersStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -94,7 +94,7 @@ abstract class _$$_UserStateInitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_UserStateInitialCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$_UserStateInitial>
+    extends _$UsersStateCopyWithImpl<$Res, _$_UserStateInitial>
     implements _$$_UserStateInitialCopyWith<$Res> {
   __$$_UserStateInitialCopyWithImpl(
       _$_UserStateInitial _value, $Res Function(_$_UserStateInitial) _then)
@@ -108,7 +108,7 @@ class _$_UserStateInitial extends _UserStateInitial {
 
   @override
   String toString() {
-    return 'UserState.initial()';
+    return 'UsersState.initial()';
   }
 
   @override
@@ -125,7 +125,7 @@ class _$_UserStateInitial extends _UserStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserEntitie user) data,
+    required TResult Function(List<UserEntitie> user) data,
     required TResult Function() error,
   }) {
     return initial();
@@ -136,7 +136,7 @@ class _$_UserStateInitial extends _UserStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserEntitie user)? data,
+    TResult? Function(List<UserEntitie> user)? data,
     TResult? Function()? error,
   }) {
     return initial?.call();
@@ -147,7 +147,7 @@ class _$_UserStateInitial extends _UserStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserEntitie user)? data,
+    TResult Function(List<UserEntitie> user)? data,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -209,7 +209,7 @@ abstract class _$$_UserStateLoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_UserStateLoadingCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$_UserStateLoading>
+    extends _$UsersStateCopyWithImpl<$Res, _$_UserStateLoading>
     implements _$$_UserStateLoadingCopyWith<$Res> {
   __$$_UserStateLoadingCopyWithImpl(
       _$_UserStateLoading _value, $Res Function(_$_UserStateLoading) _then)
@@ -223,7 +223,7 @@ class _$_UserStateLoading extends _UserStateLoading {
 
   @override
   String toString() {
-    return 'UserState.loading()';
+    return 'UsersState.loading()';
   }
 
   @override
@@ -240,7 +240,7 @@ class _$_UserStateLoading extends _UserStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserEntitie user) data,
+    required TResult Function(List<UserEntitie> user) data,
     required TResult Function() error,
   }) {
     return loading();
@@ -251,7 +251,7 @@ class _$_UserStateLoading extends _UserStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserEntitie user)? data,
+    TResult? Function(List<UserEntitie> user)? data,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -262,7 +262,7 @@ class _$_UserStateLoading extends _UserStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserEntitie user)? data,
+    TResult Function(List<UserEntitie> user)? data,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -321,14 +321,12 @@ abstract class _$$_UserStateDataCopyWith<$Res> {
           _$_UserStateData value, $Res Function(_$_UserStateData) then) =
       __$$_UserStateDataCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserEntitie user});
-
-  $UserEntitieCopyWith<$Res> get user;
+  $Res call({List<UserEntitie> user});
 }
 
 /// @nodoc
 class __$$_UserStateDataCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$_UserStateData>
+    extends _$UsersStateCopyWithImpl<$Res, _$_UserStateData>
     implements _$$_UserStateDataCopyWith<$Res> {
   __$$_UserStateDataCopyWithImpl(
       _$_UserStateData _value, $Res Function(_$_UserStateData) _then)
@@ -341,32 +339,31 @@ class __$$_UserStateDataCopyWithImpl<$Res>
   }) {
     return _then(_$_UserStateData(
       user: null == user
-          ? _value.user
+          ? _value._user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserEntitie,
+              as List<UserEntitie>,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $UserEntitieCopyWith<$Res> get user {
-    return $UserEntitieCopyWith<$Res>(_value.user, (value) {
-      return _then(_value.copyWith(user: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$_UserStateData extends _UserStateData {
-  const _$_UserStateData({required this.user}) : super._();
+  const _$_UserStateData({required final List<UserEntitie> user})
+      : _user = user,
+        super._();
 
+  final List<UserEntitie> _user;
   @override
-  final UserEntitie user;
+  List<UserEntitie> get user {
+    if (_user is EqualUnmodifiableListView) return _user;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_user);
+  }
 
   @override
   String toString() {
-    return 'UserState.data(user: $user)';
+    return 'UsersState.data(user: $user)';
   }
 
   @override
@@ -374,11 +371,12 @@ class _$_UserStateData extends _UserStateData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserStateData &&
-            (identical(other.user, user) || other.user == user));
+            const DeepCollectionEquality().equals(other._user, _user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_user));
 
   @JsonKey(ignore: true)
   @override
@@ -391,7 +389,7 @@ class _$_UserStateData extends _UserStateData {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserEntitie user) data,
+    required TResult Function(List<UserEntitie> user) data,
     required TResult Function() error,
   }) {
     return data(user);
@@ -402,7 +400,7 @@ class _$_UserStateData extends _UserStateData {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserEntitie user)? data,
+    TResult? Function(List<UserEntitie> user)? data,
     TResult? Function()? error,
   }) {
     return data?.call(user);
@@ -413,7 +411,7 @@ class _$_UserStateData extends _UserStateData {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserEntitie user)? data,
+    TResult Function(List<UserEntitie> user)? data,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -462,11 +460,11 @@ class _$_UserStateData extends _UserStateData {
 }
 
 abstract class _UserStateData extends UserState {
-  const factory _UserStateData({required final UserEntitie user}) =
+  const factory _UserStateData({required final List<UserEntitie> user}) =
       _$_UserStateData;
   const _UserStateData._() : super._();
 
-  UserEntitie get user;
+  List<UserEntitie> get user;
   @JsonKey(ignore: true)
   _$$_UserStateDataCopyWith<_$_UserStateData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -481,7 +479,7 @@ abstract class _$$_UserStateErrorCopyWith<$Res> {
 
 /// @nodoc
 class __$$_UserStateErrorCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$_UserStateError>
+    extends _$UsersStateCopyWithImpl<$Res, _$_UserStateError>
     implements _$$_UserStateErrorCopyWith<$Res> {
   __$$_UserStateErrorCopyWithImpl(
       _$_UserStateError _value, $Res Function(_$_UserStateError) _then)
@@ -495,7 +493,7 @@ class _$_UserStateError extends _UserStateError {
 
   @override
   String toString() {
-    return 'UserState.error()';
+    return 'UsersState.error()';
   }
 
   @override
@@ -512,7 +510,7 @@ class _$_UserStateError extends _UserStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(UserEntitie user) data,
+    required TResult Function(List<UserEntitie> user) data,
     required TResult Function() error,
   }) {
     return error();
@@ -523,7 +521,7 @@ class _$_UserStateError extends _UserStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(UserEntitie user)? data,
+    TResult? Function(List<UserEntitie> user)? data,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -534,7 +532,7 @@ class _$_UserStateError extends _UserStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(UserEntitie user)? data,
+    TResult Function(List<UserEntitie> user)? data,
     TResult Function()? error,
     required TResult orElse(),
   }) {
