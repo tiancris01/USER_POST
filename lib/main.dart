@@ -5,6 +5,7 @@ import 'package:user_post/widget_app.dart';
 import 'app/config/environments.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Environment().initConfig();
   runApp(
     const ProviderScope(

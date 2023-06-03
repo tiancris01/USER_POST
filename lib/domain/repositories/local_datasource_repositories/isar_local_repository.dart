@@ -8,4 +8,5 @@ abstract class IsarLocalRepository {
   Future<void> savePosts(List<PostEntitie> posts);
   Future<bool> existPostsByUser(int id);
   Future<List<PostEntitie>> getPostByUserId(int id);
+  Future<List<UserEntitie>> searchUsers(String query);
 }
