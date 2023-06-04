@@ -2,7 +2,7 @@ import 'package:either_dart/either.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_post/app/helpers/server_failure.dart';
 import 'package:user_post/domain/entities/post/post_entitie.dart';
-import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
+import 'package:user_post/presentation/providers/repository_providers_impl.dart';
 
 final jsonPHNotifierPostProvider =
     StateNotifierProvider<UsersNotifier, List<PostEntitie>>((ref) {

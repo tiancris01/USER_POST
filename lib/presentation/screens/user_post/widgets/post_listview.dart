@@ -11,18 +11,25 @@ class PostListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
+    return ListView.builder(
       itemCount: posts.length,
       itemBuilder: (context, index) {
         final post = posts[index];
-        return ListTile(
-          title: Text(post.title),
-          subtitle: Text(post.postDetail),
-        );
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return const Divider(
-          thickness: 2,
+        return Card(
+          elevation: 4,
+          surfaceTintColor: Colors.white.withOpacity(0.9),
+          margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+          child: ListTile(
+            minVerticalPadding: 10.0,
+            dense: true,
+            title: Text(post.title,
+                style: const TextStyle(
+                    fontSize: 18.0, fontWeight: FontWeight.bold)),
+            subtitle: Text(
+              post.postDetail,
+              textAlign: TextAlign.justify,
+            ),
+          ),
         );
       },
     );

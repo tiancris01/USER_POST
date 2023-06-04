@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_post/domain/entities/users/user_entitie.dart';
-import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
+import 'package:user_post/presentation/providers/repository_providers_impl.dart';
 import 'package:user_post/presentation/providers/users/user_state.dart';
 
 final isarUserNotifierProvider =
@@ -23,7 +23,7 @@ class UsersNotifier extends StateNotifier<UserState> {
   SearchCallback? searchUser;
 
   Future<void> getAllUsers() async {
-    state = const UserState.loading();
+    state = const UserState.initial();
     try {
       final response = await getUsers!();
       state = UserState.data(user: response);
@@ -33,7 +33,7 @@ class UsersNotifier extends StateNotifier<UserState> {
   }
 
   Future<void> search(String query) async {
-    state = const UserState.loading();
+    state = const UserState.initial();
     try {
       final response = await searchUser!(query);
       state = UserState.data(user: response);

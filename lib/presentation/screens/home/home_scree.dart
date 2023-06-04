@@ -4,9 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:user_post/presentation/providers/users/isar_users_repository.dart';
 import 'package:user_post/presentation/providers/users/jsonPH_users_providers.dart';
-import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
+import 'package:user_post/presentation/providers/repository_providers_impl.dart';
 import 'package:user_post/presentation/screens/home/widgets/custom_listview.dart';
-import 'package:user_post/presentation/screens/home/widgets/custom_searchbar.dart';
+import 'package:user_post/app/utils/widgets/custom_searchbar.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});

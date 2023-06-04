@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_post/domain/entities/post/post_entitie.dart';
-import 'package:user_post/presentation/providers/users/post_state.dart';
-import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
+import 'package:user_post/presentation/providers/post/post_state.dart';
+import 'package:user_post/presentation/providers/repository_providers_impl.dart';
 
 final isarNotifierPostProvider =
     StateNotifierProvider<UsersNotifier, PostState>((ref) {
@@ -15,7 +15,7 @@ typedef UserCallback = Future<List<PostEntitie>> Function(int);
 class UsersNotifier extends StateNotifier<PostState> {
   UsersNotifier({
     required this.getPostByUserId,
-  }) : super(const PostState.initial());
+  }) : super(const PostState.loading());
 
   UserCallback getPostByUserId;
 

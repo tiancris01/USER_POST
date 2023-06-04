@@ -17,7 +17,7 @@ class CustmoListView extends ConsumerWidget {
   ) {
     final users = ref.watch(isarUserNotifierProvider);
     return users.when(
-      initial: () => const Center(child: Text('Empty list')),
+      initial: () => const Center(child: CircularProgressIndicator()),
       loading: () => const Center(child: CircularProgressIndicator()),
       data: (users) => ListViewUsers(users: users),
       error: () => const Text('Error Occurred'),

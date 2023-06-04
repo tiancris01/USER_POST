@@ -75,7 +75,7 @@ ThemeData appTheme = ThemeData(
         color: Colors.white,
         fontSize: 16,
         fontWeight: FontWeight.bold,
-        fontFamily: 'GillSans',
+        fontFamily: 'Roboto',
       ),
       minimumSize: const Size(double.infinity, 50),
     ),
