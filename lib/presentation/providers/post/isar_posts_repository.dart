@@ -4,7 +4,7 @@ import 'package:user_post/presentation/providers/post/post_state.dart';
 import 'package:user_post/presentation/providers/repository_providers_impl.dart';
 
 final isarNotifierPostProvider =
-    StateNotifierProvider<UsersNotifier, PostState>((ref) {
+    StateNotifierProvider.autoDispose<UsersNotifier, PostState>((ref) {
   final getPostByUserId = ref.watch(isarRepoProvider).getPostByUserId;
 
   return UsersNotifier(getPostByUserId: getPostByUserId);
