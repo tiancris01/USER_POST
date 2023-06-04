@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_post/app/config/theme.dart';
 import 'package:user_post/app/core/routes/app_routes.dart';
-import 'package:user_post/presentation/providers/users/repository_providers_impl.dart';
+import 'package:user_post/presentation/providers/repository_providers_impl.dart';
 
 class WidgetApp extends ConsumerStatefulWidget {
   const WidgetApp({super.key});
@@ -12,11 +12,6 @@ class WidgetApp extends ConsumerStatefulWidget {
 }
 
 class _WidgetAppState extends ConsumerState<WidgetApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     // Opening the database
