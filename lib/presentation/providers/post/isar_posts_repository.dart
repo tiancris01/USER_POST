@@ -3,6 +3,7 @@ import 'package:user_post/domain/entities/post/post_entitie.dart';
 import 'package:user_post/presentation/providers/post/post_state.dart';
 import 'package:user_post/presentation/providers/repository_providers_impl.dart';
 
+// to refresh the state
 final isarNotifierPostProvider =
     StateNotifierProvider.autoDispose<UsersNotifier, PostState>((ref) {
   final getPostByUserId = ref.watch(isarRepoProvider).getPostByUserId;
