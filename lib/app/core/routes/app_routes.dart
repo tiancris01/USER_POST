@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
-import 'package:user_post/presentation/screens/home_scree.dart';
-import 'package:user_post/presentation/screens/post_by_user_screen.dart';
+import 'package:user_post/domain/entities/users/user_entitie.dart';
+import 'package:user_post/presentation/screens/home/home_scree.dart';
+import 'package:user_post/presentation/screens/user_post/post_by_user_screen.dart';
 
 // GoRouter configuration
 final router = GoRouter(
@@ -11,14 +12,11 @@ final router = GoRouter(
       builder: (context, state) => const HomeScreen(),
     ),
     GoRoute(
-      path: '/userPost/:userId',
+      path: '/userPost',
       name: PostScreen.routeName,
       builder: (context, state) {
-        // Get the userId from the path
-        final userId = state.pathParameters['userId'] ?? '';
-
-        // Return the PostScreen widget
-        return PostScreen(userId: userId);
+        UserEntitie user = state.extra as UserEntitie;
+        return PostScreen(user: user);
       },
     ),
   ],

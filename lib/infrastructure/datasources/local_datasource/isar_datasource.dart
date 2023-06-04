@@ -23,11 +23,6 @@ class IsarDataSource implements IsarLocalUsecase {
     return Future.value(Isar.getInstance());
   }
 
-  Future<bool> existUsers() async {
-    final result = await getUsers();
-    return result.isNotEmpty;
-  }
-
   Future<bool> existPosts(int id) async {
     final result = await getPostByUserId(id);
     return result.isNotEmpty;
@@ -36,14 +31,15 @@ class IsarDataSource implements IsarLocalUsecase {
   @override
   Future<List<UserEntitie>> getUsers() async {
     final isar = await db;
-    return isar.userEntities.where().findAll();
+    final result = await isar.userEntities.where().findAll();
+    return result;
   }
 
   @override
   Future<void> saveUsers(List<UserEntitie> users) async {
     final isar = await db;
     final existUser = await existUsers();
-    if (existUser) {
+    if (!existUser) {
       await isar.writeTxn(() async {
         await isar.userEntities.putAll(users);
       });
@@ -63,16 +59,37 @@ class IsarDataSource implements IsarLocalUsecase {
   @override
   Future<void> savePosts(List<PostEntitie> posts) async {
     final isar = await db;
-    final result = await isar.postEntities
-        .filter()
-        .userIdEqualTo(posts.first.userId)
-        .findAll();
-    if (result.isNotEmpty) {
+    final id = posts.last.userId;
+    final result = await isar.postEntities.filter().userIdEqualTo(id).findAll();
+    if (result.isEmpty) {
       return await isar.writeTxn(() async {
         await isar.postEntities.putAll(posts);
       });
     } else {
       return;
     }
+  }
+
+  @override
+  Future<bool> existPostsByUser(int id) async {
+    final result = await getPostByUserId(id);
+    return result.isNotEmpty;
+  }
+
+  @override
+  Future<bool> existUsers() async {
+    final result = await getUsers();
+    return result.isNotEmpty;
+  }
+
+  @override
+  Future<List<UserEntitie>> searchUsers(String query) async {
+    final isar = await db;
+    final result = await isar.userEntities
+        .where()
+        .filter()
+        .fullNameContains(query, caseSensitive: false)
+        .findAll();
+    return result;
   }
 }
